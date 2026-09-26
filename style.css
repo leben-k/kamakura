@@ -1,0 +1,174 @@
+/* かまくら往来 共通スタイル
+   色：朱（鶴岡の社殿）・藍（相模湾）・竹（報国寺の竹林）・紫陽花・砂浜 */
+:root{
+  --shu:#c8412b; --shu-dk:#9e2f1d;
+  --ai:#1f4e79; --ai-lt:#e3edf6;
+  --take:#4b7f52; --take-lt:#e6f0e3;
+  --ajisai:#7a68b0; --ajisai-lt:#eeeaf7;
+  --suna:#f6f0e4; --paper:#fffdf8;
+  --ink:#2b2622; --sub:#6b635b; --line:#e2d8c6;
+  --gold:#c9962b;
+  --radius:14px;
+  --shadow:0 2px 10px rgba(60,40,20,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--suna); color:var(--ink);
+  font-family:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+  line-height:1.85; font-size:16px;
+}
+img,svg{max-width:100%;height:auto}
+a{color:var(--ai)}
+a:hover{color:var(--shu)}
+h1,h2,h3{font-family:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;line-height:1.4}
+
+/* ---- 広告表記 ---- */
+.pr-note{background:#3a302a;color:#f3e9d8;font-size:12px;text-align:center;padding:4px 8px}
+
+/* ---- ヘッダー ---- */
+.site-header{background:var(--paper);border-bottom:4px solid var(--shu);position:sticky;top:0;z-index:50}
+.header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;gap:16px;padding:10px 16px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.logo svg{width:42px;height:42px}
+.logo-text{font-family:"Zen Old Mincho",serif;font-size:1.45rem;font-weight:700;letter-spacing:.08em}
+.logo-sub{display:block;font-size:.7rem;color:var(--sub);letter-spacing:.05em;font-weight:400}
+.gnav{margin-left:auto}
+.gnav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px}
+.gnav a{display:block;padding:6px 11px;border-radius:999px;text-decoration:none;color:var(--ink);font-size:.92rem}
+.gnav a:hover{background:var(--suna)}
+.gnav a[aria-current="page"]{background:var(--shu);color:#fff}
+@media (max-width:760px){
+  .gnav{margin-left:0;width:100%;overflow-x:auto}
+  .gnav ul{flex-wrap:nowrap}
+  .gnav a{white-space:nowrap;font-size:.85rem}
+}
+
+/* ---- レイアウト ---- */
+main{max-width:1100px;margin:0 auto;padding:0 16px 40px}
+section{margin:44px 0}
+.sec-title{display:flex;align-items:center;gap:12px;font-size:1.6rem;margin:0 0 18px;padding-bottom:8px;border-bottom:2px solid var(--line)}
+.sec-title .mark{width:34px;height:34px;flex:none}
+.lead{color:var(--sub);margin-top:-6px}
+
+/* ---- ヒーロー ---- */
+.hero{position:relative;border-radius:0 0 var(--radius) var(--radius);overflow:hidden;margin:0 -16px;background:var(--ai)}
+.hero svg{display:block;width:100%;height:auto}
+.hero-copy{position:absolute;left:5%;top:9%;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.35);max-width:62%}
+.hero-copy h1{font-size:clamp(1.6rem,4.6vw,3rem);margin:0;letter-spacing:.1em}
+.hero-copy p{margin:.4em 0 0;font-size:clamp(.85rem,1.9vw,1.15rem)}
+.page-hero{background:linear-gradient(135deg,var(--ai),#2d6aa0);color:#fff;border-radius:0 0 var(--radius) var(--radius);margin:0 -16px;padding:26px 24px;display:flex;align-items:center;gap:18px}
+.page-hero svg{width:88px;height:88px;flex:none}
+.page-hero h1{margin:0;font-size:clamp(1.4rem,4vw,2.1rem);letter-spacing:.08em}
+.page-hero p{margin:.3em 0 0;opacity:.92}
+.page-hero.shu{background:linear-gradient(135deg,var(--shu-dk),var(--shu))}
+.page-hero.take{background:linear-gradient(135deg,#355c3a,var(--take))}
+.page-hero.ajisai{background:linear-gradient(135deg,#574a8a,var(--ajisai))}
+
+/* ---- カード ---- */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.card{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+.card .pic{display:block;width:100%;aspect-ratio:16/10;background:var(--ai-lt);overflow:hidden}
+.card .pic svg{width:100%;height:100%;display:block}
+.card .body{padding:14px 16px 16px;flex:1}
+.card h3{margin:0 0 6px;font-size:1.15rem}
+.card p{margin:0 0 8px;font-size:.94rem}
+.tag{display:inline-block;font-size:.72rem;padding:1px 8px;border-radius:999px;background:var(--suna);color:var(--sub);margin:0 4px 4px 0;border:1px solid var(--line)}
+.tag.shu{background:#fbe5df;color:var(--shu-dk);border-color:#f0c4b8}
+.tag.ai{background:var(--ai-lt);color:var(--ai);border-color:#c5d8ea}
+.tag.take{background:var(--take-lt);color:#355c3a;border-color:#c7ddc2}
+.maplink{display:inline-block;font-size:.85rem;margin-top:4px;text-decoration:none;border:1px solid var(--ai);border-radius:999px;padding:2px 10px}
+.maplink:hover{background:var(--ai);color:#fff}
+
+/* ---- 基本データ ---- */
+.facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:12px}
+.fact{background:var(--paper);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);border-top:5px solid var(--shu)}
+.fact:nth-child(2n){border-top-color:var(--ai)}
+.fact:nth-child(3n){border-top-color:var(--take)}
+.fact .k{font-size:.8rem;color:var(--sub)}
+.fact .v{font-size:1.3rem;font-weight:700;font-family:"Zen Old Mincho",serif}
+.fact .n{font-size:.78rem;color:var(--sub)}
+
+/* ---- 表 ---- */
+.table-wrap{overflow-x:auto;background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.93rem}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:#f1e8d8;font-weight:700;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+
+/* ---- 注意・お知らせ ---- */
+.notice{background:#fff6e0;border-left:6px solid var(--gold);border-radius:8px;padding:12px 16px;margin:16px 0;font-size:.94rem}
+.notice.important{background:#fdeae5;border-left-color:var(--shu)}
+.notice strong{color:var(--shu-dk)}
+.asof{display:inline-block;background:var(--ai);color:#fff;font-size:.8rem;padding:2px 10px;border-radius:6px;margin-bottom:6px}
+
+/* ---- 図版 ---- */
+.figure{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px;margin:16px 0}
+.figure figcaption{font-size:.82rem;color:var(--sub);margin-top:6px}
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.scroll-x > svg{min-width:880px;display:block}
+.hint-scroll{font-size:.8rem;color:var(--sub);display:none}
+@media (max-width:900px){.hint-scroll{display:block}}
+
+/* ---- 暦（祭り） ---- */
+.timeline{list-style:none;margin:0;padding:0;position:relative}
+.timeline::before{content:"";position:absolute;left:44px;top:0;bottom:0;width:3px;background:var(--line)}
+.timeline li{position:relative;display:flex;gap:18px;margin-bottom:22px}
+.timeline .mon{flex:none;width:90px;height:90px;border-radius:50%;background:var(--shu);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:"Zen Old Mincho",serif;z-index:1;box-shadow:var(--shadow)}
+.timeline .mon b{font-size:1.5rem;line-height:1}
+.timeline .mon span{font-size:.72rem}
+.timeline li:nth-child(2n) .mon{background:var(--ai)}
+.timeline li:nth-child(3n) .mon{background:var(--take)}
+.timeline .ev{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 18px;flex:1;display:flex;gap:14px}
+.timeline .ev svg{width:96px;height:96px;flex:none}
+.timeline .ev h3{margin:0 0 4px}
+@media (max-width:600px){
+  .timeline::before{left:29px}
+  .timeline .mon{width:60px;height:60px}
+  .timeline .mon b{font-size:1.1rem}
+  .timeline .ev{flex-direction:column}
+  .timeline .ev svg{width:72px;height:72px}
+}
+
+/* ---- 地図ページ ---- */
+.legend{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:.85rem;margin:8px 0}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{display:inline-block;width:26px;height:6px;border-radius:3px}
+.legend i.dot{width:14px;height:14px;border-radius:50%}
+.spot-group{margin:26px 0}
+.spot-group h3{border-left:6px solid var(--shu);padding-left:10px;margin:0 0 10px}
+.spot-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.spot-list li{background:var(--paper);border-radius:10px;box-shadow:var(--shadow);padding:10px 12px;display:flex;gap:10px;scroll-margin-top:120px}
+.spot-list li:target{outline:3px solid var(--gold)}
+.num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--shu);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.85rem}
+.num.ai{background:var(--ai)} .num.take{background:var(--take)} .num.aj{background:var(--ajisai)}
+.spot-list b{display:block}
+.spot-list small{color:var(--sub);display:block}
+.map-svg a:hover circle{stroke:var(--gold);stroke-width:4}
+
+/* ---- 広告枠 ---- */
+.ad-slot{border:2px dashed #c9b999;background:#fbf7ee;border-radius:var(--radius);padding:18px;text-align:center;color:var(--sub);margin:26px 0;min-height:110px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.ad-slot .ad-label{font-size:.72rem;letter-spacing:.2em;background:#e9dfcb;border-radius:4px;padding:1px 8px;margin-bottom:6px}
+.furusato-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.furusato-grid .ad-slot{margin:0}
+
+/* ---- ページ内目次 ---- */
+.toc{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);padding:12px 16px;margin-top:22px}
+.toc ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px 8px}
+.toc a{display:inline-block;padding:3px 12px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-size:.88rem;background:#fff}
+
+/* ---- 出典 ---- */
+.sources{font-size:.82rem;color:var(--sub);background:var(--paper);border-radius:var(--radius);padding:12px 18px}
+.sources ul{margin:.3em 0;padding-left:1.2em}
+
+/* ---- フッター ---- */
+.site-footer{background:#2f2a26;color:#e9e0d2;padding:28px 16px 18px;margin-top:40px;font-size:.88rem}
+.footer-inner{max-width:1100px;margin:0 auto}
+.site-footer a{color:#f5d7a8}
+.footer-nav{display:flex;flex-wrap:wrap;gap:6px 16px;list-style:none;padding:0;margin:0 0 12px}
+.site-footer small{display:block;margin-top:10px;color:#b8ad9c}
+
+.zoom-btn{display:none;margin:0 0 8px;padding:6px 14px;border-radius:999px;border:1px solid var(--ai);background:#fff;color:var(--ai);font:inherit;font-size:.88rem;cursor:pointer}
+.scroll-x.fit > svg{min-width:0;width:100%}
+@media (max-width:900px){.zoom-btn{display:inline-block}}
+@media (max-width:760px){.site-header{position:static}}

@@ -1,0 +1,9 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="かまくら往来ロゴ"><title>かまくら往来ロゴ</title>
+<circle cx="32" cy="32" r="30" fill="#1f4e79"/>
+<path d="M4 42 Q16 36 24 42 T44 42 T60 42 V56 Q46 62 32 62 Q14 62 4 50Z" fill="#5c9bd1"/>
+<rect x="13" y="16" width="38" height="5" rx="2" fill="#c8412b"/>
+<rect x="16" y="24" width="32" height="4" fill="#c8412b"/>
+<rect x="19" y="18" width="5" height="30" fill="#c8412b"/>
+<rect x="40" y="18" width="5" height="30" fill="#c8412b"/>
+<rect x="11" y="13" width="42" height="4" rx="2" fill="#2b2622"/>
+</svg>
