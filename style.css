@@ -202,3 +202,5 @@ table.kv th{width:9em;white-space:normal}
   .contact-form{padding:16px 14px}
 }
 .footer-nav a[aria-current="page"]{color:#fff;font-weight:700;text-decoration:none}
+/* 運営者情報の表：連絡先フォームと同じ幅に揃える */
+.kv-wrap{max-width:540px;width:100%;margin-left:auto;margin-right:auto}
