@@ -20,7 +20,7 @@ index 4／map 1／kotsu 1／matsuri 2／areas 1／shukuhaku 3
 ## 著作権
 イラスト・地図・路線図はすべて本サイト用に作成したオリジナルのSVGです。外部の地図画像・地図データ・写真は使用していません。
 フォントは Google Fonts（Zen Kaku Gothic New / Zen Old Mincho：SIL Open Font License、無料）を読み込んでいます。
-各スポットの「地図アプリで開く」は Googleマップの公式URL形式による検索リンクです（APIキー不要・無料）。
+各スポットの「Googleマップで開く」は Googleマップの公式URL形式による検索リンクです（APIキー不要・無料）。
 
 ## 情報の確認時点
 2026年9月（バスの系統：京急バス 2026年3月8日時点、江ノ電バス 2026年9月時点）
