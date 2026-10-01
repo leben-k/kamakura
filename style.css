@@ -39,9 +39,9 @@ h1,h2,h3{font-family:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;l
 .gnav a:hover{background:var(--suna)}
 .gnav a[aria-current="page"]{background:var(--shu);color:#fff}
 @media (max-width:760px){
-  .gnav{margin-left:0;width:100%;overflow-x:auto}
-  .gnav ul{flex-wrap:nowrap}
-  .gnav a{white-space:nowrap;font-size:.85rem}
+  .gnav{margin-left:0;width:100%}
+  .gnav ul{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+  .gnav a{white-space:nowrap;font-size:.85rem;text-align:center;padding:6px 4px;background:var(--suna)}
 }
 
 /* ---- レイアウト ---- */
@@ -174,7 +174,7 @@ tr:last-child td{border-bottom:none}
 @media (max-width:760px){.site-header{position:static}}
 
 /* ---- お問い合わせフォーム ---- */
-.contact-form{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;max-width:680px}
+.contact-form{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);padding:20px;max-width:540px;width:100%;margin:0 auto}
 .contact-form label{display:block;font-weight:700;margin-bottom:14px}
 .contact-form input[type=text],.contact-form input[type=email],.contact-form select,.contact-form textarea{display:block;width:100%;margin-top:6px;padding:10px 12px;border:1px solid #cdbfa5;border-radius:8px;font:inherit;font-weight:400;background:#fff}
 .contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{outline:3px solid #f0c4b8;border-color:var(--shu)}
@@ -186,3 +186,19 @@ tr:last-child td{border-bottom:none}
 .send-btn:disabled{opacity:.6;cursor:wait}
 .form-status.ok{color:var(--take);font-weight:700}
 .form-status.ng{color:var(--shu-dk);font-weight:700}
+
+/* ---- スマホで横スクロールさせない表 ---- */
+table.kv{min-width:0}
+table.kv th{width:9em;white-space:normal}
+@media (max-width:600px){
+  table.kv th,table.kv td{display:block;width:auto;border-bottom:none}
+  table.kv th{padding-bottom:2px}
+  table.kv td{padding-top:2px;border-bottom:1px solid var(--line)}
+  table.stack{min-width:0}
+  table.stack tr:first-child{display:none}
+  table.stack tr{display:block;border-bottom:2px solid var(--line);padding:6px 0}
+  table.stack td{display:flex;gap:10px;border-bottom:none;padding:4px 12px}
+  table.stack td::before{content:attr(data-label);flex:none;width:6.5em;font-weight:700;color:var(--sub);font-size:.85rem}
+  .contact-form{padding:16px 14px}
+}
+.footer-nav a[aria-current="page"]{color:#fff;font-weight:700;text-decoration:none}

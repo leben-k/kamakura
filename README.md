@@ -11,7 +11,7 @@
 - matsuri.html … 祭り・行事
 - areas.html … 地区紹介（5地域）
 - shukuhaku.html … 宿泊ガイド
-- unei.html … 運営者情報（運営者名を記入してください）＋お問い合わせフォーム（Formspree：https://formspree.io/f/xeaowndg）
+- unei.html … 運営者情報（運営者名を記入してください）＋連絡先フォーム（Formspree：https://formspree.io/f/xeaowndg）
 
 ## 広告枠（合計12枠）
 「▼…広告コードをここに貼り付けてください」というHTMLコメントの位置に、アフィリエイトのコードを貼り付けてください。
