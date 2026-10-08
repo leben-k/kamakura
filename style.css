@@ -23,8 +23,6 @@ a{color:var(--ai)}
 a:hover{color:var(--shu)}
 h1,h2,h3{font-family:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;line-height:1.4}
 
-/* ---- 広告表記 ---- */
-.pr-note{background:#3a302a;color:#f3e9d8;font-size:12px;text-align:center;padding:4px 8px}
 
 /* ---- ヘッダー ---- */
 .site-header{background:var(--paper);border-bottom:4px solid var(--shu);position:sticky;top:0;z-index:50}
@@ -39,9 +37,9 @@ h1,h2,h3{font-family:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;l
 .gnav a:hover{background:var(--suna)}
 .gnav a[aria-current="page"]{background:var(--shu);color:#fff}
 @media (max-width:760px){
-  .gnav{margin-left:0;width:100%;overflow-x:auto}
-  .gnav ul{flex-wrap:nowrap}
-  .gnav a{white-space:nowrap;font-size:.85rem}
+  .gnav{margin-left:0;width:100%}
+  .gnav ul{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+  .gnav a{white-space:nowrap;font-size:.85rem;text-align:center;padding:6px 4px;background:var(--suna)}
 }
 
 /* ---- レイアウト ---- */
@@ -137,7 +135,7 @@ tr:last-child td{border-bottom:none}
 .legend i.dot{width:14px;height:14px;border-radius:50%}
 .spot-group{margin:26px 0}
 .spot-group h3{border-left:6px solid var(--shu);padding-left:10px;margin:0 0 10px}
-.spot-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}
+.spot-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(330px,100%),1fr));gap:10px}
 .spot-list li{background:var(--paper);border-radius:10px;box-shadow:var(--shadow);padding:10px 12px;display:flex;gap:10px;scroll-margin-top:120px}
 .spot-list li:target{outline:3px solid var(--gold)}
 .num{flex:none;width:30px;height:30px;border-radius:50%;background:var(--shu);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.85rem}
@@ -173,8 +171,71 @@ tr:last-child td{border-bottom:none}
 @media (max-width:900px){.zoom-btn{display:inline-block}}
 @media (max-width:760px){.site-header{position:static}}
 
-/* ---- 広告表示（ads.js 用） ---- */
-[hidden]{display:none !important}
-.ad-body{width:100%;text-align:center}
-.ad-body img{max-width:100%;height:auto}
-.ad-slot[data-rendered]{border-style:solid}
+/* ---- お問い合わせフォーム ---- */
+.contact-form{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 24px;width:100%}
+.contact-form label{display:block;font-weight:700;margin-bottom:14px}
+.contact-form input[type=text],.contact-form input[type=email],.contact-form select,.contact-form textarea{display:block;width:100%;margin-top:6px;padding:10px 12px;border:1px solid #cdbfa5;border-radius:8px;font:inherit;font-weight:400;background:#fff}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{outline:3px solid #f0c4b8;border-color:var(--shu)}
+.req{display:inline-block;background:var(--shu);color:#fff;font-size:.7rem;padding:0 6px;border-radius:4px;vertical-align:middle;font-weight:400}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.form-note{font-size:.82rem;color:var(--sub)}
+.send-btn{background:var(--shu);color:#fff;border:none;border-radius:999px;padding:10px 32px;font:inherit;font-weight:700;cursor:pointer}
+.send-btn:hover{background:var(--shu-dk)}
+.send-btn:disabled{opacity:.6;cursor:wait}
+.form-status.ok{color:var(--take);font-weight:700}
+.form-status.ng{color:var(--shu-dk);font-weight:700}
+
+/* ---- スマホで横スクロールさせない表 ---- */
+@media (max-width:600px){
+  table.stack{min-width:0}
+  table.stack tr:first-child{display:none}
+  table.stack tr{display:block;border-bottom:2px solid var(--line);padding:6px 0}
+  table.stack td{display:flex;gap:10px;border-bottom:none;padding:4px 12px}
+  table.stack td::before{content:attr(data-label);flex:none;width:6.5em;font-weight:700;color:var(--sub);font-size:.85rem}
+  .contact-form{padding:16px 14px}
+}
+.footer-nav a[aria-current="page"]{color:#fff;font-weight:700;text-decoration:none}
+
+/* ---- 観光マップ：カードのボタン行・地図にもどる ---- */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.gm-line{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin:6px 0 0}
+.gm-line .maplink{margin-top:0}
+.to-map{display:inline-block;text-decoration:none;border:1px solid var(--shu);color:var(--shu-dk);border-radius:999px;background:#fff}
+.to-map:hover{background:var(--shu);color:#fff}
+.gm-line .maplink,.gm-line .to-map{font-size:.8rem;padding:2px 9px;white-space:nowrap}
+#map-top{scroll-margin-top:110px}
+@keyframes pinpulse{0%,100%{stroke-width:2}50%{stroke-width:9}}
+.map-svg a.hl circle{stroke:#c9962b;animation:pinpulse .8s ease-in-out 3}
+@media (max-width:760px){#map-top{scroll-margin-top:10px}}
+@media (max-width:420px){
+  .gm-line{gap:6px}
+  .gm-line .maplink,.gm-line .to-map{font-size:.78rem;padding:2px 8px}
+  .spot-list li{padding:10px}
+}
+@media (max-width:340px){
+  .gm-line{gap:4px}
+  .gm-line .maplink,.gm-line .to-map{font-size:.74rem;padding:2px 6px}
+}
+
+/* ---- フッターの現在地 ---- */
+
+/* ---- 運営者情報ページ：すべてを1本の列にそろえる ---- */
+.narrow{max-width:760px;margin:0 auto}
+.info-card{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.info-list{margin:0}
+.info-list > div{display:grid;grid-template-columns:7.5em 1fr;align-items:center;border-bottom:1px solid var(--line)}
+.info-list > div:last-child{border-bottom:none}
+.info-list dt{margin:0;padding:14px 16px;background:#f1e8d8;font-weight:700;align-self:stretch;display:flex;align-items:center}
+.info-list dd{margin:0;padding:14px 18px}
+.info-list dd.todo{color:var(--sub);font-style:normal}
+.narrow .notice{margin:0 0 14px}
+.narrow .contact-form label:last-of-type{margin-bottom:6px}
+.send-btn{display:block;margin:0 auto}
+@media (max-width:600px){
+  .info-list > div{grid-template-columns:5.5em 1fr}
+  .info-list dt{padding:12px 10px;font-size:.92rem}
+  .info-list dd{padding:12px 12px}
+  .contact-form{padding:18px 14px}
+  .send-btn{width:100%}
+}
+.nw{white-space:nowrap}
