@@ -172,14 +172,13 @@ tr:last-child td{border-bottom:none}
 @media (max-width:760px){.site-header{position:static}}
 
 /* ---- お問い合わせフォーム ---- */
-.contact-form{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 24px;width:100%}
+.contact-form{background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);width:100%}
 .contact-form label{display:block;font-weight:700;margin-bottom:14px}
 .contact-form input[type=text],.contact-form input[type=email],.contact-form select,.contact-form textarea{display:block;width:100%;margin-top:6px;padding:10px 12px;border:1px solid #cdbfa5;border-radius:8px;font:inherit;font-weight:400;background:#fff}
 .contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{outline:3px solid #f0c4b8;border-color:var(--shu)}
 .req{display:inline-block;background:var(--shu);color:#fff;font-size:.7rem;padding:0 6px;border-radius:4px;vertical-align:middle;font-weight:400}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
 .form-note{font-size:.82rem;color:var(--sub)}
-.send-btn{background:var(--shu);color:#fff;border:none;border-radius:999px;padding:10px 32px;font:inherit;font-weight:700;cursor:pointer}
 .send-btn:hover{background:var(--shu-dk)}
 .send-btn:disabled{opacity:.6;cursor:wait}
 .form-status.ok{color:var(--take);font-weight:700}
@@ -192,7 +191,6 @@ tr:last-child td{border-bottom:none}
   table.stack tr{display:block;border-bottom:2px solid var(--line);padding:6px 0}
   table.stack td{display:flex;gap:10px;border-bottom:none;padding:4px 12px}
   table.stack td::before{content:attr(data-label);flex:none;width:6.5em;font-weight:700;color:var(--sub);font-size:.85rem}
-  .contact-form{padding:16px 14px}
 }
 .footer-nav a[aria-current="page"]{color:#fff;font-weight:700;text-decoration:none}
 
@@ -230,12 +228,26 @@ tr:last-child td{border-bottom:none}
 .info-list dd.todo{color:var(--sub);font-style:normal}
 .narrow .notice{margin:0 0 14px}
 .narrow .contact-form label:last-of-type{margin-bottom:6px}
-.send-btn{display:block;margin:0 auto}
 @media (max-width:600px){
   .info-list > div{grid-template-columns:5.5em 1fr}
   .info-list dt{padding:12px 10px;font-size:.92rem}
   .info-list dd{padding:12px 12px}
-  .contact-form{padding:18px 14px}
-  .send-btn{width:100%}
 }
 .nw{white-space:nowrap}
+
+/* ---- 連絡先フォーム：説明は欄の前に、1項目1行で ---- */
+.narrow .notice{display:flex;flex-wrap:wrap;gap:2px 10px;align-items:baseline}
+.narrow .notice strong{flex:none}
+.form-points li{position:relative;padding-left:1em;line-height:1.7}
+.form-points li::before{content:"・";position:absolute;left:0}
+.form-points .req{margin-right:2px}
+.narrow .notice .seg{flex:1 1 0;min-width:0}
+.narrow .notice .seg .nw{display:inline-block}
+
+/* ---- 連絡先フォーム：スマホ・PCで同じ見た目（画面幅で変えない） ---- */
+.narrow .notice{font-size:.9rem;padding:10px 12px}
+.form-points{list-style:none;margin:0 0 14px;padding:10px 12px;background:var(--paper);border-radius:var(--radius);box-shadow:var(--shadow);font-size:.82rem;color:var(--sub)}
+.contact-form{padding:20px 16px}
+.send-btn{display:block;margin:8px auto 0;min-width:12em;padding:11px 32px;background:var(--shu);color:#fff;border:none;border-radius:999px;font:inherit;font-weight:700;cursor:pointer}
+.send-btn:hover{background:var(--shu-dk)}
+.send-btn:disabled{opacity:.6;cursor:wait}

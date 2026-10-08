@@ -53,8 +53,14 @@
 <p>本サイトのイラスト・観光マップ・路線図はすべて本サイトが作成したオリジナルです。他の地図の画像やデータ、写真、商品のパッケージや企業・団体のロゴなどは使用していません。観光マップは位置関係を示す模式図で、正確な距離や道順を示すものではありません。各スポットの「Googleマップで開く」は、Googleマップの検索結果へのリンクです。</p>
 </section>
 <section><h2 class="sec-title" id="contact"><svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#c8412b"/><path d="M9 24 Q14 19 20 24 T31 24" stroke="#fff" stroke-width="3" fill="none"/><rect x="11" y="11" width="18" height="3" fill="#fff"/></svg>連絡先</h2>
-<p>運営者へのご連絡は、こちらのフォームからお送りください。<span class="req">必須</span>の項目は必ずご記入ください。</p>
-<div class="notice important"><strong>ご注意：</strong>この連絡を利用しての各種の勧誘はご遠慮ください。</div>
+<p>下のフォームからご連絡ください。</p>
+<div class="notice important"><strong>ご注意</strong><span class="seg"><span class="nw">この連絡を利用しての各種の勧誘は</span><span class="nw">ご遠慮ください。</span></span></div>
+<ul class="form-points">
+<li><span class="req">必須</span>の項目は必ずご記入ください</li>
+<li>内容は、ご連絡への対応にのみ利用します</li>
+<li>返信にお時間をいただく場合があります</li>
+<li>送信には Formspree を利用しています</li>
+</ul>
 <form class="contact-form" id="contactForm" action="https://formspree.io/f/xeaowndg" method="POST">
 <input type="hidden" name="_subject" id="mailSubject" value="【かまくら往来】連絡">
 <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -62,7 +68,6 @@
 <label>あなたのメールアドレス <span class="req">必須</span><input type="email" name="email" required maxlength="200" autocomplete="email"></label>
 <label>連絡の表題 <span class="req">必須</span><input type="text" name="title" id="mailTitle" required maxlength="100" placeholder="例：○○について"></label>
 <label>内容 <span class="req">必須</span><textarea name="message" rows="7" required maxlength="3000"></textarea></label>
-<p class="form-note">送信された内容は、ご連絡への対応のためにのみ利用します。フォームの送信にはFormspree（formspree.io）のサービスを利用しています。返信までお時間をいただく場合があります。</p>
 <button type="submit" class="send-btn">送信する</button>
 <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
 </form>
@@ -90,7 +95,10 @@
 <ul class="footer-nav"><li><a href="index.html">トップ</a></li><li><a href="map.html">観光マップ</a></li><li><a href="kotsu.html">交通</a></li><li><a href="matsuri.html">祭り・行事</a></li><li><a href="areas.html">地区紹介</a></li><li><a href="shukuhaku.html">宿泊</a></li><li><a href="unei.html" aria-current="page">運営者情報</a></li></ul>
 <p>掲載内容は2026年9月時点で確認した情報です。祭りの日程、交通の路線・のりば、施設の公開状況などは変わることがあります。<strong>ご利用の際は、必ず各公式サイトなどで新しい情報をご確認ください。</strong></p>
 <p>📮 運営者へのご連絡は<a href="unei.html#contact">連絡先フォーム</a>からお願いします。</p>
-<small>イラスト・図版はすべて本サイトのオリジナルです。© かまくら往来</small>
+<small>イラスト・図版はすべて本サイトのオリジナルです。<br>© <span id="copyYear">2026</span> かまくら往来</small>
 </div></footer>
+<script>
+(function(){var y=document.getElementById("copyYear");if(y){y.textContent=new Date().getFullYear();}})();
+</script>
 </body>
 </html>
