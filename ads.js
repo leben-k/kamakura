@@ -6,7 +6,7 @@
  * ★設定するのは、下の1行だけです。
  *   '' の中に、スプレッドシートを「ウェブに公開」して得たCSVのURLを貼り付けてください。
  */
-var SHEET_CSV_URL ='https://docs.google.com/spreadsheets/d/e/2PACX-1vQA2oCzrL35x4e3nfjBB5_a-7u4Fksa20ilXN0E5ok1a8KeURvRC9vGXZNOZUMH3cL9W1fDdiJlRwwf/pub?gid=1100192650&single=true&output=csv';
+var SHEET_CSV_URL ='https://docs.google.com/spreadsheets/d/e/2PACX-1vTjSDOlQugC5Md08KnUyLvB5n7QhBS9b3X4KQCDgfoFwlvVDM_j2hR8qQb5kK_n0oyR2YeN6ibdDdYs/pub?gid=999473378&single=true&output=csv';
 
 (function () {
   var slots = document.querySelectorAll('[data-ad-slot]');
