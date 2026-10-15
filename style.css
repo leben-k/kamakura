@@ -251,3 +251,19 @@ tr:last-child td{border-bottom:none}
 .send-btn{display:block;margin:8px auto 0;min-width:12em;padding:11px 32px;background:var(--shu);color:#fff;border:none;border-radius:999px;font:inherit;font-weight:700;cursor:pointer}
 .send-btn:hover{background:var(--shu-dk)}
 .send-btn:disabled{opacity:.6;cursor:wait}
+
+/* ---- プライバシーポリシー ---- */
+.policy .policy-meta{margin:18px 0 0;text-align:right;font-size:.85rem;color:var(--sub)}
+.policy section{margin:30px 0}
+.policy ul{margin:.5em 0 .9em;padding-left:1.4em}
+.policy li{margin:.45em 0}
+.policy p{margin:.6em 0}
+.policy .sec-title{font-size:1.3rem}
+.page-hero h1.long{font-size:clamp(1.1rem,5.4vw,2.1rem);letter-spacing:.03em;white-space:nowrap}
+
+/* ---- 広告枠：スプレッドシートの内容が入ったとき ---- */
+.ad-slot[hidden],.furusato-grid[hidden]{display:none}
+.ad-slot.has-ad{border:none;background:none;padding:0;min-height:0;align-items:stretch;color:inherit}
+.ad-slot.has-ad .ad-label{align-self:center}
+.ad-slot.has-ad .ad-body{display:flex;flex-direction:column;align-items:center;gap:8px;max-width:100%;overflow:hidden}
+.ad-slot.has-ad .ad-body img,.ad-slot.has-ad .ad-body iframe{max-width:100%;height:auto}

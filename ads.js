@@ -1,18 +1,27 @@
 /*
  * かまくら往来 広告表示スクリプト
- * Googleスプレッドシート（「ウェブに公開」したCSV）から広告を読み込んで、
+ * Googleスプレッドシート（「ウェブに公開」したCSV）から広告の内容を読み込み、
  * 各ページの広告枠（data-ad-slot="ad1" など）に表示します。
  *
- * ★設定するのはこの1行だけ：下の '' の中に、公開したCSVのURLを貼り付けてください。
+ * ★設定するのは、下の1行だけです。
+ *   '' の中に、スプレッドシートを「ウェブに公開」して得たCSVのURLを貼り付けてください。
  */
-var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTjSDOlQugC5Md08KnUyLvB5n7QhBS9b3X4KQCDgfoFwlvVDM_j2hR8qQb5kK_n0oyR2YeN6ibdDdYs/pub?gid=999473378&single=true&output=csv';
+var SHEET_CSV_URL = '';
 
 (function () {
-  var CACHE_KEY = 'kamakura_ads_csv_v1';
   var slots = document.querySelectorAll('[data-ad-slot]');
   if (!slots.length) return;
 
-  // CSV（カンマ区切り）を読み取る。セル内の改行・引用符にも対応
+  // URLが未設定のあいだは、広告枠の目印（点線の枠）をそのまま表示します
+  if (!SHEET_CSV_URL) {
+    if (window.console) console.warn('ads.js: SHEET_CSV_URL が未設定です');
+    return;
+  }
+
+  // 読み込みが終わるまで（失敗したときも）、広告枠は表示しません
+  Array.prototype.forEach.call(slots, function (s) { s.hidden = true; });
+
+  // CSV（カンマ区切り）を読み取ります。セル内の改行・引用符にも対応
   function parseCSV(t) {
     t = t.replace(/^\uFEFF/, '');
     var rows = [], row = [], f = '', q = false, i, c;
@@ -31,6 +40,7 @@ var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTjSDOlQugC
   }
 
   // シートの行 → { 枠ID: {on, code, url, text} }
+  // 列：A=枠ID / B=掲載場所（メモ） / C=表示（ON・OFF） / D=広告コード / E=リンクURL / F=リンク文言
   function toMap(csv) {
     var map = {}, found = false;
     parseCSV(csv).forEach(function (r) {
@@ -51,7 +61,7 @@ var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTjSDOlQugC
     return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
-  // 表示するHTMLを決める（広告コード優先。なければ簡易リンク）
+  // 表示するHTMLを決めます（広告コードを優先。なければ簡易リンク）
   function buildHTML(rec) {
     if (!rec || !rec.on) return '';
     if (rec.code) return rec.code;
@@ -62,7 +72,7 @@ var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTjSDOlQugC
     return '';
   }
 
-  // innerHTMLでは動かない <script> を動くように作り直す
+  // innerHTMLでは動かない <script> を動くように作り直します
   function setHTML(el, html) {
     el.innerHTML = html;
     Array.prototype.forEach.call(el.querySelectorAll('script'), function (old) {
@@ -74,43 +84,33 @@ var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTjSDOlQugC
   }
 
   function apply(map) {
-    var wrappers = [];
+    var grids = [];
     Array.prototype.forEach.call(slots, function (slot) {
       var id = slot.getAttribute('data-ad-slot').toLowerCase();
       var html = buildHTML(map[id]);
       var body = slot.querySelector('.ad-body') || slot;
       if (!html) { slot.hidden = true; }
       else {
-        if (slot.getAttribute('data-rendered') !== html) {   // 同じ内容なら描き直さない
-          setHTML(body, html);
-          slot.setAttribute('data-rendered', html);
-        }
+        setHTML(body, html);
+        slot.classList.add('has-ad');
         slot.hidden = false;
       }
-      var w = slot.closest('.ad-block') || slot.closest('.furusato-block') || slot.closest('section');
-      if (w && wrappers.indexOf(w) < 0) wrappers.push(w);
+      var g = slot.closest('.furusato-grid');
+      if (g && grids.indexOf(g) < 0) grids.push(g);
     });
-    // 中の広告が1つも表示されないときは、見出しごと隠す
-    wrappers.forEach(function (w) {
-      w.hidden = !w.querySelector('[data-ad-slot]:not([hidden])');
-    });
+    // ふるさと納税の並びは、中の広告が1つも表示されないときは、まとめて隠します
+    grids.forEach(function (g) { g.hidden = !g.querySelector('[data-ad-slot]:not([hidden])'); });
   }
 
-  // 1) 前回の内容があれば先に表示（速くて、通信エラー時の保険にもなる）
-  try {
-    var cached = localStorage.getItem(CACHE_KEY);
-    if (cached) { var cm = toMap(cached); if (cm) apply(cm); }
-  } catch (e) {}
-
-  // 2) スプレッドシートから最新を取得して更新
-  if (!SHEET_CSV_URL) { if (window.console) console.warn('ads.js: SHEET_CSV_URL が未設定です'); return; }
   fetch(SHEET_CSV_URL)
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
     .then(function (text) {
       var m = toMap(text);
       if (!m) throw new Error('広告データが見つかりません');
       apply(m);
-      try { localStorage.setItem(CACHE_KEY, text); } catch (e) {}
     })
-    .catch(function (e) { if (window.console) console.warn('ads.js:', e); });
+    .catch(function (e) {
+      if (window.console) console.warn('ads.js:', e);
+      Array.prototype.forEach.call(document.querySelectorAll('.furusato-grid'), function (g) { g.hidden = true; });
+    });
 })();
