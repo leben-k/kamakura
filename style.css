@@ -147,7 +147,7 @@ tr:last-child td{border-bottom:none}
 /* ---- 広告枠 ---- */
 .ad-slot{border:2px dashed #c9b999;background:#fbf7ee;border-radius:var(--radius);padding:18px;text-align:center;color:var(--sub);margin:26px 0;min-height:110px;display:flex;flex-direction:column;justify-content:center;align-items:center}
 .ad-slot .ad-label{font-size:.72rem;letter-spacing:.2em;background:#e9dfcb;border-radius:4px;padding:1px 8px;margin-bottom:6px}
-.furusato-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.furusato-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:14px}
 .furusato-grid .ad-slot{margin:0}
 
 /* ---- ページ内目次 ---- */
@@ -265,5 +265,5 @@ tr:last-child td{border-bottom:none}
 .ad-slot[hidden],.furusato-grid[hidden]{display:none}
 .ad-slot.has-ad{border:none;background:none;padding:0;min-height:0;align-items:stretch;color:inherit}
 .ad-slot.has-ad .ad-label{align-self:center}
-.ad-slot.has-ad .ad-body{display:flex;flex-direction:column;align-items:center;gap:8px;max-width:100%;overflow:hidden}
-.ad-slot.has-ad .ad-body img,.ad-slot.has-ad .ad-body iframe{max-width:100%;height:auto}
+.ad-slot.has-ad .ad-body{display:flex;flex-direction:column;align-items:center;gap:8px;max-width:100%;overflow-x:auto}
+.ad-slot .ad-body img{max-width:none}

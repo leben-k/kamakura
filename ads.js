@@ -6,7 +6,7 @@
  * ★設定するのは、下の1行だけです。
  *   '' の中に、スプレッドシートを「ウェブに公開」して得たCSVのURLを貼り付けてください。
  */
-var SHEET_CSV_URL ='https://docs.google.com/spreadsheets/d/e/2PACX-1vTjSDOlQugC5Md08KnUyLvB5n7QhBS9b3X4KQCDgfoFwlvVDM_j2hR8qQb5kK_n0oyR2YeN6ibdDdYs/pub?gid=999473378&single=true&output=csv';
+var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTjSDOlQugC5Md08KnUyLvB5n7QhBS9b3X4KQCDgfoFwlvVDM_j2hR8qQb5kK_n0oyR2YeN6ibdDdYs/pub?gid=999473378&single=true&output=csv';
 
 (function () {
   var slots = document.querySelectorAll('[data-ad-slot]');
@@ -40,7 +40,7 @@ var SHEET_CSV_URL ='https://docs.google.com/spreadsheets/d/e/2PACX-1vTjSDOlQugC5
   }
 
   // シートの行 → { 枠ID: {on, code, url, text} }
-  // 列：A=枠ID / B=掲載場所（メモ） / C=表示（ON・OFF） / D=広告コード / E=リンクURL / F=リンク文言
+  // 列：A=枠ID / B=掲載場所（メモ） / C=表示（ON・OFF） / D=広告コード （E・F列は使いません）
   function toMap(csv) {
     var map = {}, found = false;
     parseCSV(csv).forEach(function (r) {
@@ -57,18 +57,10 @@ var SHEET_CSV_URL ='https://docs.google.com/spreadsheets/d/e/2PACX-1vTjSDOlQugC5
     return found ? map : null;
   }
 
-  function esc(s) {
-    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-  }
-
-  // 表示するHTMLを決めます（広告コードを優先。なければ簡易リンク）
+  // 表示するHTMLを決めます（D列の広告コードを、加工せずそのまま表示します）
   function buildHTML(rec) {
     if (!rec || !rec.on) return '';
     if (rec.code) return rec.code;
-    if (/^https?:\/\//i.test(rec.url)) {
-      return '<a href="' + esc(rec.url) + '" target="_blank" rel="nofollow sponsored noopener">' +
-             esc(rec.text || rec.url) + '</a>';
-    }
     return '';
   }
 
